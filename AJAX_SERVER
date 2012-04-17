@@ -1,0 +1,27 @@
+<?php
+  require_once('config.php');
+	SESSION_START();	
+	$keyword = $_POST['data'];	
+	$sql = "SELECT * FROM  tbltweet WHERE tweettitle like '%".$keyword."%' limit 0,10";	
+	$result = mysql_query($sql) or die(mysql_error());
+		if(mysql_num_rows($result))
+		{
+			echo '<ul class="list">';
+			while($row = mysql_fetch_array($result))
+				{
+					$str = strtolower($row['tweettitle']);
+					$final = str_replace($keyword,'<span class="matched">'.$keyword.'</span>',$str);
+					$_SESSION['final']=$final;
+					echo "</br>";
+					echo '<li><a href=\'javascript:void(0);\'>'.$final.'</a></li>';	
+	
+			}
+			echo "</ul>";
+		}
+		else
+			echo 0;
+?>	   
+		
+		
+	
+		
