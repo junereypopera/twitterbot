@@ -1,0 +1,63 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> Search Tweet</title>
+ </head>
+ <script src="js/jquery.js"></script>
+ <script src="js/facebookStyleInput.js"></script>
+ 
+ <script type="text/javascript">
+  var mainHolder	 = "#fb_holder";
+	var inputBox	 = "#fb_inputbox";
+	var ajaxFilePath = "ajax_server.php";
+ </script>
+
+ <link rel="stylesheet" type="text/css" href="styles/facebookStyleInput.css"> 
+
+<div id="container">
+</div>
+	  
+ <body>
+    <div class="main">		
+		<div>
+			<br/>
+			Search Tweet
+		</div>
+		
+		<div id="fb_holder">
+		<form action="index.php" method="POST">
+		<input type="text" name="friends" id="fb_inputbox" placeholder="Enter Last Name">   		
+		</form>
+		</div>
+		
+	</div>
+<form action='index.php' method='POST'>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="SUBMIT" name="sbmt">   		
+</form>
+<?PHP
+error_reporting(0);
+require_once('config.php');
+SESSION_START();
+if(!$_POST['sbmt'])
+{}
+else
+{
+$ss=$_SESSION['final'];
+echo $ss;
+$select=mysql_query("SELECT * FROM tbltweet");
+while($rows=mysql_fetch_array($select))
+{
+echo $rows['tweettitle'];
+}
+
+
+}
+
+?>
+
+<br/>
+
+ </BODY>
+</HTML>
